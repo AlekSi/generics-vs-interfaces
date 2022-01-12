@@ -1,3 +1,3 @@
-module github.com/AlekSi/the-generic-problem
+module github.com/AlekSi/generics-vs-interfaces
 
 go 1.18
