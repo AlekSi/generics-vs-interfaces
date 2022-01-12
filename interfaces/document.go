@@ -41,8 +41,7 @@ func MakeDocument(pairs ...BSONType) (*Document, error) {
 }
 
 func (d *Document) Set(key String, value BSONType) {
-	_, ok := d.m[key]
-	if !ok {
+	if _, ok := d.m[key]; !ok {
 		d.keys = append(d.keys, key)
 	}
 	d.m[key] = value

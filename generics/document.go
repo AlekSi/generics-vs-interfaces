@@ -34,8 +34,7 @@ func MakeDocument3[T1, T2, T3 BSONType](key1 string, value1 T1, key2 string, val
 
 // Methods cannot have type parameters.
 func DocumentSet[T BSONType](d *Document, key string, value T) {
-	_, ok := d.m[key]
-	if !ok {
+	if _, ok := d.m[key]; !ok {
 		d.keys = append(d.keys, key)
 	}
 	d.m[key] = value
