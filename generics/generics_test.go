@@ -16,7 +16,7 @@ func TestSet(t *testing.T) {
 	DocumentSet(d, "foo", 42)
 
 	// 3. Nice, no boxing.
-	DocumentSet(d, "foo", "baz")
+	DocumentSet(d, "bar", "baz")
 
 	DocumentSet(d, "document", NewDocument())
 	DocumentSet(d, "array", NewArray())
@@ -30,6 +30,11 @@ func TestSet(t *testing.T) {
 	// 6. That requires a separate function - there are not variadic template parameters.
 	MakeDocument2("foo", 42, "bar", "baz")
 
+	// 7. The caller should know the type.
 	assert.True(t, d.Has("foo"))
+	assert.Equal(t, 42, DocumentGet[int](d, "foo"))
+	assert.Equal(t, "", DocumentGet[string](d, "foo"))
 	assert.False(t, d.Has("baz"))
+	assert.Equal(t, 0, DocumentGet[int](d, "baz"))
+	assert.Equal(t, "", DocumentGet[string](d, "baz"))
 }

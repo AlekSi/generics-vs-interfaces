@@ -34,6 +34,9 @@ func TestSet(t *testing.T) {
 	// 6. That works with a single function.
 	MakeDocument(String("foo"), Int(42), String("bar"), String("baz"))
 
+	// 7. Works as expected.
 	assert.True(t, d.Has("foo"))
+	assert.Equal(t, Int(42), d.Get("foo"))
 	assert.False(t, d.Has("baz"))
+	assert.Equal(t, nil, d.Get("baz"))
 }
