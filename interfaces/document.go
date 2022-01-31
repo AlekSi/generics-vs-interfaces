@@ -46,3 +46,8 @@ func (d *Document) Set(key String, value BSONType) {
 	}
 	d.m[key] = value
 }
+
+func (d *Document) Has(key String) bool {
+	_, ok := d.m[key]
+	return ok
+}

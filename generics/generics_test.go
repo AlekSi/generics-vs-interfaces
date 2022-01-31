@@ -1,6 +1,10 @@
 package generics
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestSet(t *testing.T) {
 	d := NewDocument()
@@ -25,4 +29,7 @@ func TestSet(t *testing.T) {
 
 	// 6. That requires a separate function - there are not variadic template parameters.
 	MakeDocument2("foo", 42, "bar", "baz")
+
+	assert.True(t, d.Has("foo"))
+	assert.False(t, d.Has("baz"))
 }

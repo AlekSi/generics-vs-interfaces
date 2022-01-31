@@ -39,3 +39,8 @@ func DocumentSet[T BSONType](d *Document, key string, value T) {
 	}
 	d.m[key] = value
 }
+
+func (d *Document) Has(key string) bool {
+	_, ok := d.m[key]
+	return ok
+}

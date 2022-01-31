@@ -2,6 +2,8 @@ package interfaces
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSet(t *testing.T) {
@@ -21,14 +23,17 @@ func TestSet(t *testing.T) {
 
 	// 4. It would be nice to disallow that at compile time.
 	_, err := MakeDocument(String("invalid number of arguments"))
-	t.Log(err)
+	assert.Error(t, err)
 
 	// 5. It would be nice to disallow that at compile time.
 	_, err = MakeDocument(
 		Int(42), String("invalid key type"),
 	)
-	t.Log(err)
+	assert.Error(t, err)
 
 	// 6. That works with a single function.
 	MakeDocument(String("foo"), Int(42), String("bar"), String("baz"))
+
+	assert.True(t, d.Has("foo"))
+	assert.False(t, d.Has("baz"))
 }
