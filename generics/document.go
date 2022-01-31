@@ -46,13 +46,6 @@ func (d *Document) Has(key string) bool {
 }
 
 func DocumentGet[T BSONType](d *Document, key string) T {
-	var t T
-
-	v, ok := d.m[key]
-	if !ok {
-		return t
-	}
-
-	t, _ = v.(T)
-	return t
+	v, _ := d.m[key].(T)
+	return v
 }
